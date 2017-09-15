@@ -5,8 +5,10 @@ geneList = []
 def opgave9():
     sequence = "ACAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATGCAGGAAGCGGCAGGAATAAGGAAAAGCAGCCTCCTGACTTTCCTCGCTTGGTGGTTTGAGTGGACCTCCCAGGCCAGTGCCGGGCCCCTCATAGGAGAGGAAGCTCGGGAGGTGGCCAGGCGGCAGGAAGGCGCACCCCCCCAGCAATCCGCGCGCCGGGACAGAATGCCCTGCAGGAACTTCTTCTGGAAGACCTTCTCCTCCTGCAAATAAAACCTCACCCATGAATGCTCACGCAAGTTTAATTACAGACCTGAA"
 
+    # CATGTCATGCG
     #in list L komt de sequence string gesplit op ATG
     L = sequence.split("ATG")
+    print(L)
 
     #in deze lijst komen de strings die eindigen op ATG TAG TAA of TGA
     candidateList = []
@@ -21,13 +23,10 @@ def opgave9():
 
             check = testSequence[i:i+3]
             if check == "TAA" or check == "ATG" or check == "TAG" or check == "TGA":
-                print(string)
                 candidateList.append(string)
                 string = ""
 
-            print("check", check)
             string += testSequence[i]
-            print("string: ", string)
             i += 1
 
         print("candidateList", candidateList)
@@ -47,4 +46,4 @@ def fillGeneList(candidateList):
     for sequence in candidateList:
         if len(sequence) % 3 == 0:
             geneList.append(sequence)
-opgave9()
+#opgave9()
