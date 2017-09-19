@@ -31,17 +31,17 @@ here your code :
 """
 
 finished = False
-i = 0
-while i < NR_GUESSES:
+i = 1
+while i <= NR_GUESSES:
     print("Turn: ", i)
     rowGuess = int(input("guess the row"))
     columnGuess = int(input("guess the column"))
 
-    if rowGuess > 4:
+    if rowGuess > 3:
         print("number out of range")
         continue
 
-    elif columnGuess > 4:
+    elif columnGuess > 3:
         print("numer out of range")
         continue
 
@@ -60,3 +60,6 @@ while i < NR_GUESSES:
     print_board(board)
 
     i += 1
+
+if i == NR_GUESSES +1 :
+    print("Game Over: Out of guesses")
