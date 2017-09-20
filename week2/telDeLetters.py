@@ -19,7 +19,7 @@ def analyze_file(filename):
 
 
         infile.close()
-
+        print(counts)
         # show histogram
         histogram(counts)
     except IOError:
@@ -30,8 +30,9 @@ def analyze_file(filename):
 
 def count_letters(line, counts):
     # for each char in line fill list with name counts ...
-    for word in line:
-        counts.append(word)
+    for char in line:
+        #dit moet een getal worden
+        counts.append(line.count(char))
 
 
 
@@ -60,7 +61,7 @@ window.title("Occurrence of Letters Histogram")
 
 frame1 = Frame(window)  # frmae for histogram
 frame1.pack()
-canvas = Canvas(frame1, width=500, height=200)
+canvas = Canvas(frame1, width=1500, height=750)
 canvas.pack()
 
 frame2 = Frame(window)  # frame for buttons
