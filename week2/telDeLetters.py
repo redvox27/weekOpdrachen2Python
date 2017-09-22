@@ -1,10 +1,12 @@
 from tkinter import *
 import tkinter.messagebox
 from tkinter.filedialog import askopenfilename
+import string
 from collections import*
 
-alfabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k','l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
+alfabet =['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k','l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+#alfabet = list(string.ascii_lowercase())
+#string.ascii().lowercas
 def show_result():
     analyze_file(filename.get())
 
@@ -14,8 +16,8 @@ def analyze_file(filename):
         infile = open(filename, "r")
 
         # create and initialize a list with name counts ...
-        counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+        counts = [0]*26
+    # [0]*26
         # for each line in file call count_letters ...
         for line in infile:
             count_letters(line, counts)
@@ -35,8 +37,9 @@ def analyze_file(filename):
 def count_letters(line, counts):
     # for each char in line fill list with name counts ...
     for char in line:
+        char = char.lower()
+
         if char in alfabet:
-            char = char.lower()
             #get index of char in alfabet
             index = alfabet.index(char)
 
