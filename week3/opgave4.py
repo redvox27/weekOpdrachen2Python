@@ -84,7 +84,7 @@ class RomanLetterConverter():
             print(self.decInt)
 
 r = RomanLetterConverter()
-r.romanToInt("DCCLII")
+r.romanToInt("MMMCMLXXXVI")
 r.printDecNumber()
 
 
