@@ -10,6 +10,7 @@ class RomanLetterConverter():
 
         #append de letters een voor een in de lijst
         romanLetterList = [letter for letter in romanString]
+        loopedLetters = []
 
         print(romanLetterList)
 
@@ -30,7 +31,6 @@ class RomanLetterConverter():
                 #Getal mag alleen worden afgetrokken als eerste getal kleiner is dan voorste
                 if firstLetter > secondLetter:
                     self.decInt += firstLetter
-
                     i+=1
 
                 #Kleinere getal mag worden afgetrokken van grotere getal
@@ -45,6 +45,7 @@ class RomanLetterConverter():
                     while j < len(romanLetterList) -1:
                         if romanLetterList[j] == romanLetterList[j+1]:
                             sameLetterCounter +=1
+                            loopedLetters.append(romanLetterList[j])
                             j +=1
 
                         else:
@@ -53,6 +54,10 @@ class RomanLetterConverter():
                     self.decInt += self.rom_val.get(romanLetterList[startValue]) * sameLetterCounter
 
                     i += sameLetterCounter
+            print(i)
+            print(len(romanLetterList))
+            if i == len(romanLetterList) -1:
+                self.decInt += self.rom_val.get(romanLetterList[len(romanLetterList)-1])
 
     def oneDigitCheck(self, romanString):
         decInt = self.rom_val.get(romanString)
@@ -84,7 +89,7 @@ class RomanLetterConverter():
             print(self.decInt)
 
 r = RomanLetterConverter()
-r.romanToInt("MMMCMLXXXVI")
+r.romanToInt("XXX")
 r.printDecNumber()
 
 
