@@ -5,6 +5,8 @@ import time
 class Plotter():
 
     def __init__(self):
+        self.running = True
+
         self.s = 1
         self.x2 = 50
         self.y2 = self.value_to_y(randint(0, 100))
@@ -16,6 +18,13 @@ class Plotter():
         self.canvas.pack(expand=YES, fill=BOTH)
 
         self.quitButton = Button(self.root, text='Quit', command=self.root.quit).pack()
+        self.pauseButton = Button(self.root, text='Pause/Continue', command=self.pause).pack()
+
+        self.xLable = Label(self.root, text='x- as') #x-as lable
+        self.xLable.place(x= 55, y=560)
+
+        self.xLable = Label(self.root, text='x- as')# y-as lable
+        self.xLable.place(x=15, y=460)
 
         self.canvas.create_line(50, 550, 1150, 550, width=2)  # x-axis
         self.canvas.create_line(50, 550, 50, 50, width=2)  # y-axis
@@ -35,24 +44,34 @@ class Plotter():
         return 550 - 5 * val
 
     def step(self):
-        if self.s == 23:
-            self.s = 1
-            self.x2 = 50
+        if self.running:
+            if self.s == 23:
+                self.s = 1
+                self.x2 = 50
 
-            self.canvas.delete("temp")
+                self.canvas.delete("temp")
 
-        x1 = self.x2
-        y1 = self.y2
-        self.x2 = 50 + self.s*50
-        self.y2 = self.value_to_y(randint(0, 100))
-        self.canvas.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
+            x1 = self.x2
+            y1 = self.y2
+            self.x2 = 50 + self.s*50
+            self.y2 = self.value_to_y(randint(0, 100))
+            self.canvas.create_line(x1, y1, self.x2, self.y2, fill='blue', tags='temp')
 
-        self.s += 1
 
-        self.canvas.after(1000, self.step())
+            self.canvas.after(300, self.step)
+            self.s += 1
 
+    def pause(self):
+        if self.running == True:
+
+            self.running = False
+        else:
+            self.running = True
+
+        self.step()
+        print(self.running)
+    def main(self):
+        self.canvas.after(300, self.step)
         self.root.mainloop()
-
-
 p = Plotter()
-p.step()
+p.main()
