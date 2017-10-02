@@ -4,8 +4,6 @@ from tkinter.filedialog import askopenfilename
 from collections import Counter
 import operator
 import itertools
-
-
 def show_result():
     analyze_file(filename.get())
 
@@ -17,26 +15,26 @@ def analyze_file(filename):
         wordArray = []
         frequencyArray = []
 
-        for word in infile.read().split(' '):
+        for word in infile.read().split('.'):
             if len(word) > 1:
-                counts[word] += 1
+                counts[word] +=1
 
         # your code
         print(counts)
-        # vul frequency list op een gesorteerde manier
+        #vul frequency list op een gesorteerde manier
         for value in sorted(counts.values(), reverse=True):
             frequencyArray.append(value)
 
-        # pak tien meest volkomende frequencies
+        #pak tien meest volkomende frequencies
         frequencyArray = frequencyArray[:10]
 
-        # append de tien woorden met de hoogste frequentie in woordArray
+        #append de tien woorden met de hoogste frequentie in woordArray
         i = 0
         while i < 11:
             wordArray.append(max(counts.items(), key=operator.itemgetter(1))[0])
             del counts[max(counts.items(), key=operator.itemgetter(1))[0]]
 
-            i += 1
+            i +=1
         print(wordArray)
         print(frequencyArray)
 
@@ -61,8 +59,7 @@ def show_histogram(frequencyArray, wordArray):
     maxCounts = max(frequencyArray)
 
     for i in range(numberOfBars):
-        canvas.create_rectangle(i * widthBar / numberOfBars + 10,
-                                height - 20 - frequencyArray[i] * heightBar / maxCounts,
+        canvas.create_rectangle(i * widthBar / numberOfBars + 10, height - 20 - frequencyArray[i] * heightBar / maxCounts,
                                 (i + 1) * widthBar / numberOfBars + 10, height - 20)
         canvas.create_text(i * widthBar / numberOfBars + 10 + 0.5 * widthBar / numberOfBars, height - 10,
                            text=str(wordArray[i]))
