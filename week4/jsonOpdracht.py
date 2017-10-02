@@ -16,7 +16,6 @@ class BookReader():
         price = 0
         while i < len(self.array):
             if "Python" in self.array[i]['title']:
-                print(self.array[i]['title'])
                 price += self.array[i]['price']
                 bookCounter +=1
                 i +=1
@@ -32,21 +31,16 @@ class BookReader():
             authorList.append(self.array[i]['author'])
             i += 1
 
-        print(self.array)
-        print(authorList)
         sortedAuthorList = (sorted(authorList))
 
-        i = 0
-        j = 0
-
-        while i < len(sortedAuthorList):
+        for i in range(len(sortedAuthorList)-1):
             sortedTitle = sortedAuthorList[i]
-            print("sorted title: ",sortedTitle)
-            while j < len(self.array):
-                print(self.array[j]['title'])
-                j +=1
+            for j in range(len(self.array) -1):
+                arrayTitle = self.array[j]['author']
 
-            i += 1
+                if sortedTitle == arrayTitle:
+                    sortedBookList.append(self.array[j])
+                    del self.array[j]
 
         return sortedBookList
 b = BookReader('books.json')
