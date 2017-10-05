@@ -42,9 +42,9 @@ s = """
 0 0 9 """
 
 b = to_board(s)
-print("the board> ", b)
+print("the board> ", s)
 print()
-
+display(b)
 SIZE = len(b)  # the total size, e.g. 81
 N = int(SIZE ** 0.5)  # size of row or column, e.g. 9
 
