@@ -48,26 +48,23 @@ N = int(SIZE ** 0.5)  # size of row or column, e.g. 9
 def neighbors(i):
     result = []
     row = i // N  # [0..N-1]
-    faultyRowDown = (i - 1) // N
-    faultyRowUp = (i + 1) // N
-    print("row: ", row)
     # your code
-    if i > 0 and (i - 1)//N == row and (i + 1)//N == row:
-        firstNeighborIndex = [i - 1]
-        result.append(i-1);
-        print(firstNeighborIndex)
+    if i > 0 and (i - 1)//N == row:
+        firstNeighborIndex = i - 1
+        result.append(firstNeighborIndex)
 
-    if i < SIZE-1 and (i - 1)//N == row and (i + 1)//N == row:
-        secondNeighborIndex = [i + 1]
-        print(secondNeighborIndex)
+    if i < SIZE-1 and (i + 1)//N == row:
+        secondNeighborIndex = i + 1
+        result.append(secondNeighborIndex)
 
     if i > N-1:
-        thirdNeighborIndex = [i - N]
-        print(thirdNeighborIndex)
+        thirdNeighborIndex = i - N
+        result.append(thirdNeighborIndex)
 
     if i <= SIZE - N:
-        fourthNeighborIndex = [i + N]
-        print(fourthNeighborIndex)
+        fourthNeighborIndex = i + N
+        result.append(fourthNeighborIndex)
+
     print(result)
     return result
 
