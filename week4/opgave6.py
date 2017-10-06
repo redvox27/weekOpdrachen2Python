@@ -79,6 +79,14 @@ assert clues[-1] == SIZE  # last clue must equal SIZE
 # pos = index in list b, count = distance starting from 1, clue_index = index in list clues
 # note : will try all paths & will find all solutions
 def solve(pos, count, clue_index):
+    indexList = neighbors(pos)
+    if count > SIZE:
+        return
+
+    else:
+        pass
+    #for index in indexList:
+
 
     pass
 # your code
