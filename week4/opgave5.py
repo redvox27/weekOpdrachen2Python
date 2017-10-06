@@ -27,4 +27,4 @@ def preorder(tree):
         preorder(tree.right)
 
 preorder(tree)
-print(sorted(numArray))
+print(numArray)

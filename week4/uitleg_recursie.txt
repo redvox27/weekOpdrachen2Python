@@ -1,0 +1,9 @@
+solve(bordsituatie, )
+	je checkt of je klaar bent
+		geef bord situatie mee	
+	
+	check of nog mogelijk
+		opties = mogelijke zetten bij langs
+		
+		for optie in opties:
+			solve(bord situatie.doezet)
