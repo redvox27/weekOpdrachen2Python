@@ -38,10 +38,10 @@ s = """
 0 5 0
 0 0 9 """
 
-b = to_board(s)
+board = to_board(s)
 print("the board> ", s)
 
-SIZE = len(b)  # the total size, e.g. 81
+SIZE = len(board)  # the total size, e.g. 81
 N = int(SIZE ** 0.5)  # size of row or column, e.g. 9
 # only hor & ver, no wrapping
 
@@ -65,32 +65,36 @@ def neighbors(i):
         fourthNeighborIndex = i + N
         result.append(fourthNeighborIndex)
 
-    print(result)
     return result
 
-neighbors(2)
+#print(neighbors(0))
 
 # extract and sort the clues
-clues = sorted([int(x) for x in b if x != 0])
+clues = sorted([int(x) for x in board if x != 0])
 assert clues[0] == 1
 assert clues[-1] == SIZE  # last clue must equal SIZE
 
 
 # pos = index in list b, count = distance starting from 1, clue_index = index in list clues
 # note : will try all paths & will find all solutions
-def solve(pos, count, clue_index):
-    indexList = neighbors(pos)
-    if count > SIZE:
+def solve(pos, count, clueValueCounter):
+    neighBorIndexList = neighbors(pos)
+    clueValue = clues[clueValueCounter]
+    print(board)
+    if count == SIZE:
+        print("done")
         return
 
-    else:
-        pass
-    #for index in indexList:
+    for index in neighBorIndexList:
+        if board[index] == 0:
+            board[index] = count
+            solve(pos+1, count+1, clueValueCounter)
+
+        if board[index] != 0 and count == clueValue:
+            solve(pos+1, count+1, clueValueCounter+1)
 
 
-    pass
-# your code
 
-
-pos = b.index(1)
-solve(pos, 1, 0)
+pos = board.index(0)
+#print(pos)
+solve(0, count=2, clueValueCounter=0)

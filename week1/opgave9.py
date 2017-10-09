@@ -46,4 +46,3 @@ def fillGeneList(candidateList):
     for sequence in candidateList:
         if len(sequence) % 3 == 0:
             geneList.append(sequence)
-#opgave9()
