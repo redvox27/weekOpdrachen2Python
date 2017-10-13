@@ -18,10 +18,7 @@ class Manager(Employee):
 
     def __init__(self, name, role, department, salary_m, bonus):
         super(Manager, self).__init__(name, role, department, salary_m)
-        self.name = name
-        self.role = role
-        self.department = department
-        self.salary_m = salary_m
+
         self.bonus = salary_m * (bonus / 100)
     # your code
     def __repr__(self):

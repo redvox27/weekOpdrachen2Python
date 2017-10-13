@@ -1,3 +1,4 @@
+import copy
 #N = 9
 # i is de index
 
@@ -61,7 +62,7 @@ def neighbors(i):
         thirdNeighborIndex = i - N
         result.append(thirdNeighborIndex)
 
-    if i <= SIZE - N:
+    if i < SIZE - N:
         fourthNeighborIndex = i + N
         result.append(fourthNeighborIndex)
 
@@ -77,24 +78,28 @@ assert clues[-1] == SIZE  # last clue must equal SIZE
 
 # pos = index in list b, count = distance starting from 1, clue_index = index in list clues
 # note : will try all paths & will find all solutions
-def solve(pos, count, clueValueCounter):
+def solve(pos, count, clueValueCounter, b):
     neighBorIndexList = neighbors(pos)
+
+    #TODO cluevalue klopt niet dit moet verbeterd worden.
     clueValue = clues[clueValueCounter]
-    print(board)
+    tempBoard = copy.copy(b)
     if count == SIZE:
         print("done")
+        print(tempBoard)
         return
 
     for index in neighBorIndexList:
-        if board[index] == 0:
-            board[index] = count
-            solve(pos+1, count+1, clueValueCounter)
+        if tempBoard[index] == 0:
+            tempBoard[index] = count
+            solve(index, count+1, clueValueCounter, tempBoard)
 
-        if board[index] != 0 and count == clueValue:
-            solve(pos+1, count+1, clueValueCounter+1)
+        if tempBoard[index] != 0:
+            if count == tempBoard[index]:
+                solve(index, count+1, clueValueCounter, tempBoard)
 
 
 
 pos = board.index(0)
 #print(pos)
-solve(0, count=2, clueValueCounter=0)
+solve(0, count=2, clueValueCounter=0, b=board)
